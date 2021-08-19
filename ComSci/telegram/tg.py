@@ -21,6 +21,7 @@ import os
 import telegram
 import telebot
 import requests
+import sk_client
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters, InlineQueryHandler,CallbackQueryHandler
 from dotenv import load_dotenv
 from telegram import  InlineKeyboardButton,InlineKeyboardMarkup, Video, Bot
@@ -52,21 +53,33 @@ def echo(update, context):
     files = {'video':open('surprise.mp4','rb')}
     resp = requests.post('https://api.telegram.org/bot'+ API_KEY +'/sendVideo?chat_id=' + CHAT_ID, files = files)
     telegram.Video(file_id='surprise.mp4',file_unique_id='aaa',width=1,height=1,duration=1)
-    
     update.message.reply_text(update.message.text)
-
 
 def error(update, context):
     """Log Errors caused by Updates."""
     logger.warning('Update "%s" caused error "%s"', update, context.error)
 
-def bernie(update, context): 
-    update.message.reply_text('BERNIE BERNIE')
-
 def wash(update, context):
-    keyboard = [[InlineKeyboardButton("Machine One", callback_data='Machine One')], [InlineKeyboardButton("Machine Two", callback_data='Machine Two')]]
+    keyboard = [[InlineKeyboardButton("Machine One", callback_data='Machine One')]]
+    #keyboard = [[InlineKeyboardButton("Machine One", callback_data='Machine One')], [InlineKeyboardButton("Machine Two", callback_data='Machine Two')]]
     reply_markup = InlineKeyboardMarkup(keyboard)
     update.message.reply_text('Please Select:', reply_markup=reply_markup)
+    sk_client.ping_rpi("wash")
+
+def dry(update, context):
+    keyboard = [[InlineKeyboardButton("Machine One", callback_data='Machine One')]]
+    #keyboard = [[InlineKeyboardButton("Machine One", callback_data='Machine One')], [InlineKeyboardButton("Machine Two", callback_data='Machine Two')]]
+    reply_markup = InlineKeyboardMarkup(keyboard)
+    update.message.reply_text('Please Select:', reply_markup=reply_markup)
+    sk_client.ping_rpi("dry")
+
+def sterlize(update, context):
+    keyboard = [[InlineKeyboardButton("Machine One", callback_data='Machine One')]]
+    #keyboard = [[InlineKeyboardButton("Machine One", callback_data='Machine One')], [InlineKeyboardButton("Machine Two", callback_data='Machine Two')]]
+    reply_markup = InlineKeyboardMarkup(keyboard)
+    update.message.reply_text('Please Select:', reply_markup=reply_markup)  
+    sk_client.ping_rpi("sterlize")
+
 
 def button(update,context):
     query = update.callback_query
@@ -86,8 +99,9 @@ def main():
     # on different commands - answer in Telegram
     dp.add_handler(CommandHandler("start", start))
     dp.add_handler(CommandHandler("help", help))
-    dp.add_handler(CommandHandler("bernie", bernie))
     dp.add_handler(CommandHandler("wash",wash))
+    dp.add_handler(CommandHandler("dry",dry))
+    dp.add_handler(CommandHandler("sterlize",sterlize))
     dp.add_handler(CallbackQueryHandler(button))
     
 
