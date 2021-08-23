@@ -1,0 +1,26 @@
+<annotation>
+	<folder>train</folder>
+	<filename>015.jpg</filename>
+	<path>C:\tensorflow1\models\research\object_detection\images\train\015.jpg</path>
+	<source>
+		<database>Unknown</database>
+	</source>
+	<size>
+		<width>1080</width>
+		<height>1920</height>
+		<depth>3</depth>
+	</size>
+	<segmented>0</segmented>
+	<object>
+		<name>syringe</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>308</xmin>
+			<ymin>356</ymin>
+			<xmax>725</xmax>
+			<ymax>1727</ymax>
+		</bndbox>
+	</object>
+</annotation>

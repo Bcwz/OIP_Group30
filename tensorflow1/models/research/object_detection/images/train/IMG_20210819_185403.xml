@@ -1,0 +1,26 @@
+<annotation>
+	<folder>test</folder>
+	<filename>IMG_20210819_185403.jpg</filename>
+	<path>C:\tensorflow1\models\research\object_detection\images\test\IMG_20210819_185403.jpg</path>
+	<source>
+		<database>Unknown</database>
+	</source>
+	<size>
+		<width>4000</width>
+		<height>3000</height>
+		<depth>3</depth>
+	</size>
+	<segmented>0</segmented>
+	<object>
+		<name>plunger</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>143</xmin>
+			<ymin>654</ymin>
+			<xmax>3886</xmax>
+			<ymax>1491</ymax>
+		</bndbox>
+	</object>
+</annotation>

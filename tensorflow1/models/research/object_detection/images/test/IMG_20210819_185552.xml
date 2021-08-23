@@ -1,0 +1,26 @@
+<annotation>
+	<folder>test</folder>
+	<filename>IMG_20210819_185552.jpg</filename>
+	<path>C:\tensorflow1\models\research\object_detection\images\test\IMG_20210819_185552.jpg</path>
+	<source>
+		<database>Unknown</database>
+	</source>
+	<size>
+		<width>3000</width>
+		<height>4000</height>
+		<depth>3</depth>
+	</size>
+	<segmented>0</segmented>
+	<object>
+		<name>syringe</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>887</xmin>
+			<ymin>23</ymin>
+			<xmax>2330</xmax>
+			<ymax>3441</ymax>
+		</bndbox>
+	</object>
+</annotation>

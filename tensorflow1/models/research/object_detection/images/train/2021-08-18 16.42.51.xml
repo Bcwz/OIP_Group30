@@ -1,0 +1,38 @@
+<annotation>
+	<folder>train</folder>
+	<filename>2021-08-18 16.42.51.jpg</filename>
+	<path>C:\tensorflow1\models\research\object_detection\images\train\2021-08-18 16.42.51.jpg</path>
+	<source>
+		<database>Unknown</database>
+	</source>
+	<size>
+		<width>3024</width>
+		<height>4032</height>
+		<depth>3</depth>
+	</size>
+	<segmented>0</segmented>
+	<object>
+		<name>plunger</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>1335</xmin>
+			<ymin>791</ymin>
+			<xmax>1894</xmax>
+			<ymax>1754</ymax>
+		</bndbox>
+	</object>
+	<object>
+		<name>syringe</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>1057</xmin>
+			<ymin>2245</ymin>
+			<xmax>1771</xmax>
+			<ymax>3263</ymax>
+		</bndbox>
+	</object>
+</annotation>

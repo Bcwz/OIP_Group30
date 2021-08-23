@@ -1,0 +1,26 @@
+<annotation>
+	<folder>train</folder>
+	<filename>IMG_20210819_185136.jpg</filename>
+	<path>C:\tensorflow1\models\research\object_detection\images\train\IMG_20210819_185136.jpg</path>
+	<source>
+		<database>Unknown</database>
+	</source>
+	<size>
+		<width>3000</width>
+		<height>4000</height>
+		<depth>3</depth>
+	</size>
+	<segmented>0</segmented>
+	<object>
+		<name>syringe</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>1148</xmin>
+			<ymin>1284</ymin>
+			<xmax>2343</xmax>
+			<ymax>3989</ymax>
+		</bndbox>
+	</object>
+</annotation>
