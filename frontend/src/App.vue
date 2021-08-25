@@ -1,33 +1,30 @@
 <template>
   <div class="holder">
-    <div class="title">
-      {{ current_state }}
-    </div>
-    <router-view />
-    <Controls />
+    <State :state="state" />
+    <Controls :state="state" />
   </div>
 </template>
 
 <script>
 import { constants } from "./assets/constants";
+import State from "./components/State.vue";
 import Controls from "./components/Controls.vue";
 
 export default {
   name: "App",
-  components: {
-    Controls,
+  data() {
+    return {
+      state: null,
+    };
   },
-  computed: {
-    current_state() {
-      return this.$store.state.state
-        ? this.$store.state.state.toUpperCase()
-        : "";
-    },
+  components: {
+    State,
+    Controls,
   },
   mounted() {
     this.$socket.on(constants.STATE, (state) => {
       console.log(state);
-      this.$store.state.state = state;
+      this.state = state;
     });
   },
 };
