@@ -56,6 +56,7 @@ def start_cleaning() -> None:
 
 def stop_cleaning() -> None:
     log("stop_cleaning")
+    set_state(Constants.STOP)
     pass
 
 

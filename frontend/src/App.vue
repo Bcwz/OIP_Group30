@@ -1,7 +1,7 @@
 <template>
   <div class="holder">
-    <div class="subtitle">
-      {{ $store.state.state }}
+    <div class="title">
+      {{ current_state }}
     </div>
     <router-view />
     <Controls />
@@ -16,6 +16,13 @@ export default {
   name: "App",
   components: {
     Controls,
+  },
+  computed: {
+    current_state() {
+      return this.$store.state.state
+        ? this.$store.state.state.toUpperCase()
+        : "";
+    },
   },
   mounted() {
     this.$socket.on(constants.STATE, (state) => {
