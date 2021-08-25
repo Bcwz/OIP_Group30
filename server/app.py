@@ -30,7 +30,7 @@ def state():
 def values():
     log("values")
     # return {"length": dim.length, "width": dim.width, "height": dim.height, "volume": dim.volume()}
-    return {"humidity": machine.humidity, "temperature": machine.temperature}
+    return {"humidity": machine.get_humidity(), "temperature": machine.get_temperature()}
 
 
 @app.route('/video_feed/')

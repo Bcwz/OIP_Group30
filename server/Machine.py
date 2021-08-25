@@ -1,7 +1,7 @@
 from debug import log
 import Constants
 import sys
-import Adafruit_DHT
+import adafruit_dht
 import random
 
 
@@ -13,10 +13,11 @@ class Machine:
         self.state = Constants.IDLE
         self.speed = Constants.SPEED_NORMAL
 
-        # lambda self, humidity: Adafruit_DHT.read_retry(11, 4)[0]
-        # lambda self, temperature: Adafruit_DHT.read_retry(11, 4)[1]
-        lambda self, humidity: random.randint(0, 100)
-        lambda self, temperature: random.randint(0, 1000)
+    def get_humidity(self) -> str:
+        return str(random.randint(0,100))
+
+    def get_temperature(self) -> str:
+        return str(random.randint(0,100))
 
     def wash(self) -> None:
         # Insert command to start washing here

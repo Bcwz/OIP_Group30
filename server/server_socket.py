@@ -1,7 +1,7 @@
 import eventlet
 import socketio
 
-sio = socketio.Server()
+sio = socketio.Server(cors_allowed_origins='*')
 # the index.html file hosted by eventlet is a dummy file
 # it appears to be required to host some html file.. 
 app = socketio.WSGIApp(sio, static_files={

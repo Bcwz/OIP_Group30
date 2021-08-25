@@ -2,7 +2,7 @@ import { createApp } from "vue";
 import { createStore } from "vuex";
 import router from "./router";
 
-// import { io } from "socket.io-client";
+import { io } from "socket.io-client";
 
 import App from "./App.vue";
 const store = createStore({
@@ -16,7 +16,5 @@ const app = createApp(App);
 
 app.use(store);
 app.use(router);
-// app.config.globalProperties.$socket = io("https://services.peikai.pii.at/", {
-//   path: "/OIP-Server/",
-// });
+app.config.globalProperties.$socket = io("http://192.168.0.139:5000/");
 app.mount("#app");
