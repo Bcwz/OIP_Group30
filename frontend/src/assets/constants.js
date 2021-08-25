@@ -1,14 +1,14 @@
 export const constants = Object.freeze({
-  TITLE: "Smart Cleaner",
-  KEYWORD: "hey simon",
+  INSTRUCTION: "instruction",
+  START: "start",
+  STOP: "stop",
+  DRY: "dry",
 
-  IDLE: "idle",
   SCANNING: "scanning",
-  CLEANING: "cleaning",
+  WASHING: "washing",
   DRYING: "drying",
   COMPLETE: "complete",
 
+  STATE: "state",
   ERROR: "error",
-
-  URL: "https://services.peikai.pii.at/OIP/server",
 });

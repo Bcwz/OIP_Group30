@@ -16,5 +16,5 @@ const app = createApp(App);
 
 app.use(store);
 app.use(router);
-app.config.globalProperties.$socket = io("http://192.168.0.139:5000/");
+app.config.globalProperties.$socket = io("http://localhost:5000/");
 app.mount("#app");

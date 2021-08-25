@@ -1,5 +1,8 @@
 <template>
-  <div class="holder has-text-centered">
+  <div class="holder">
+    <div class="subtitle">
+      {{ $store.state.state }}
+    </div>
     <router-view />
     <Controls />
   </div>
@@ -11,17 +14,15 @@ import Controls from "./components/Controls.vue";
 
 export default {
   name: "App",
-  data() {
-    return {
-      title: constants.TITLE,
-    };
-  },
   components: {
     Controls,
   },
-  methods: {},
-  computed: {},
-  mounted() {},
+  mounted() {
+    this.$socket.on(constants.STATE, (state) => {
+      console.log(state);
+      this.$store.state.state = state;
+    });
+  },
 };
 </script>
 
@@ -36,9 +37,11 @@ html {
 
 .holder {
   height: 100vh;
-
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
+
+  padding: 10%;
 }
 </style>

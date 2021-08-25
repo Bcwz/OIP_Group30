@@ -1,12 +1,12 @@
-KEYWORD = "hey simon"
+INSTRUCTION = "instruction"
+START = "start"
+STOP = "stop"
+DRY = "dry"
 
-IDLE = "idle"
 SCANNING = "scanning"
 WASHING = "washing"
-STERILIZING = "sterilizing"
 DRYING = "drying"
 COMPLETE = "complete"
 
+STATE = "state"
 ERROR = "error"
-
-SPEED_NORMAL = "normal"

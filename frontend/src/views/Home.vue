@@ -1,17 +1,10 @@
 <template>
-  <div>
-    <div class="title">Smart Cleaner</div>
-  </div>
+  <div></div>
 </template>
 
 <script>
 export default {
-  name: "App",
-  data() {},
-  components: {},
-  methods: {},
-  computed: {},
-  mounted() {},
+  name: "Home",
 };
 </script>
 

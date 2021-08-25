@@ -12,7 +12,6 @@
       ></button>
     </div>
     <p>
-      <span>{{ runtimeTranscription }}</span>
       <span v-if="error">{{ error }}</span>
     </p>
   </div>
@@ -22,74 +21,23 @@
 import { constants } from "../assets/constants";
 export default {
   name: "Controls",
-  props: {
-    base_server_url: String,
-  },
   data() {
     return {
       error: false,
-      runtimeTranscription: "",
-
-      running: false,
     };
   },
+  computed: {
+    running() {
+      return this.$store.state.state != constants.STOP;
+    },
+  },
   methods: {
-    // startSpeechRecognition() {
-    //   let SpeechRecognition =
-    //     window.SpeechRecognition || window.webkitSpeechRecognition;
-
-    //   if (!SpeechRecognition) {
-    //     this.error =
-    //       "Speech Recognition is not available on this browser. Please use Chrome or Firefox";
-    //     return;
-    //   }
-
-    //   let recognition = new SpeechRecognition();
-    //   recognition.lang = this.lang;
-    //   recognition.interimResults = true;
-
-    //   recognition.addEventListener("result", (event) => {
-    //     const text = Array.from(event.results)
-    //       .map((result) => result[0])
-    //       .map((result) => result.transcript)
-    //       .join("");
-    //     this.runtimeTranscription = text;
-    //   });
-
-    //   recognition.addEventListener("end", () => {
-    //     if (this.runtimeTranscription !== "") {
-    //       if (this.runtimeTranscription.includes("start")) {
-    //         this.send_signal(1);
-    //       }
-    //       if (this.runtimeTranscription.includes("stop")) {
-    //         this.send_signal(2);
-    //       }
-    //       console.log(this.runtimeTranscription);
-    //     }
-    //     this.runtimeTranscription = "";
-    //     this.startSpeechRecognition();
-    //   });
-
-    //   recognition.start();
-    // },
-    set_state(val) {
-      this.$store.state.state = val;
-    },
     send_signal() {
-      if (!this.running) {
-        alert("Starting");
-        this.set_state(constants.CLEANING);
-        this.running = true;
-      } else if (this.running) {
-        alert("Stopping");
-        this.set_state(constants.IDLE);
-        this.running = false;
-      }
+      let message = this.running ? constants.STOP : constants.START;
+      this.$socket.emit(constants.INSTRUCTION, message);
     },
   },
-  mounted() {
-    // this.startSpeechRecognition();
-  },
+  mounted() {},
 };
 </script>
 
