@@ -1,8 +1,8 @@
 import eventlet
 import socketio
 
-import sys
-import Adafruit_DHT
+import board
+import adafruit_dht
 
 import Constants
 
@@ -23,6 +23,8 @@ app = socketio.WSGIApp(sio, static_files={
 log("init machine")
 state = Constants.STOP
 
+# DHT Sensor Set Up
+dhtDevice = adafruit_dht.DHT11(board.D4)
 
 def set_state(new_state) -> None:
     global state
@@ -31,13 +33,11 @@ def set_state(new_state) -> None:
 
 
 def get_humidity() -> str:
-    humidity, temperature = Adafruit_DHT.read_retry(11, 4)
-    return str(humidity)
+    return dhtDevice.humidity
 
 
 def get_temperature() -> str:
-    humidity, temperature = Adafruit_DHT.read_retry(11, 4)
-    return str(temperature)
+    return dhtDevice.temperature
 
 
 def wash() -> None:
@@ -97,3 +97,4 @@ def disconnect(sid):
 
 if __name__ == '__main__':
     eventlet.wsgi.server(eventlet.listen(('localhost', 5000)), app)
+
