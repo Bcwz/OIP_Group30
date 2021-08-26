@@ -1,6 +1,8 @@
-# from Machine import Machine
 import eventlet
 import socketio
+
+import sys
+import Adafruit_DHT
 
 import Constants
 
@@ -29,11 +31,13 @@ def set_state(new_state) -> None:
 
 
 def get_humidity() -> str:
-    return str(random.randint(0, 100))
+    humidity, temperature = Adafruit_DHT.read_retry(11, 4)
+    return str(humidity)
 
 
 def get_temperature() -> str:
-    return str(random.randint(0, 100))
+    humidity, temperature = Adafruit_DHT.read_retry(11, 4)
+    return str(temperature)
 
 
 def wash() -> None:
