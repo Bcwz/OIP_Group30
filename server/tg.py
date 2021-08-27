@@ -1,13 +1,9 @@
 import os
 import telegram
-from dotenv import load_dotenv
-from telegram import InlineKeyboardButton, InlineKeyboardMarkup
-
 
 # For telegram bot
-load_dotenv()
-API_KEY = os.getenv('API_KEY')
-GROUP_ID = os.getenv('GROUP_ID')
+API_KEY = "1837082029:AAHU48tAh94AD8bWQfkSiZXfOJug0Mw4FEI"
+GROUP_ID = "-1001501180878"
 
 
 class TelegramClass:
