@@ -8,11 +8,11 @@
 export default {
   name: "State",
   props: {
-    state: null,
+    state: String,
   },
   computed: {
     upper_case_state() {
-      return state ? state.toUpperCase() : "";
+      return this.state ? this.state.toUpperCase() : "";
     },
   },
 };

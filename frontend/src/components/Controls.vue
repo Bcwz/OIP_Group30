@@ -21,6 +21,9 @@
 import { constants } from "../assets/constants";
 export default {
   name: "Controls",
+  props: {
+    state: String,
+  },
   data() {
     return {
       error: false,
@@ -28,7 +31,7 @@ export default {
   },
   computed: {
     running() {
-      return this.$store.state.state != constants.STOP;
+      return this.state != constants.STOP;
     },
   },
   methods: {
