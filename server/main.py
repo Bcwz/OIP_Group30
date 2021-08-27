@@ -4,6 +4,9 @@ import socketio
 import board
 import adafruit_dht
 
+# For limit switch
+import RPi.GPIO as GPIO
+
 # For pi to arduino imports
 import serial
 import time
@@ -12,6 +15,11 @@ import Constants
 
 from Utils import *
 import random
+
+# GPIO Set Up
+GPIO.setwarnings(False)
+GPIO.setmode(GPIO.BOARD)
+GPIO.setup(18, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
 
 # Socketio Set Up
 clients = "clients"
@@ -35,6 +43,10 @@ def set_state(new_state) -> None:
     state = new_state
     sio.emit(Constants.STATE, state, room=clients)
 
+def door_is_closed() -> bool:
+    if GPIO.input(18) == GPIO.HIGH:
+        return False
+    return True
 
 def get_humidity() -> str:
     return dhtDevice.humidity
@@ -85,7 +97,7 @@ def start_cleaning() -> None:
     set_state(Constants.START)
 
     time = 0
-    while (state != Constants.STOP and time < 60):
+    while (state != Constants.STOP and time < 60 and door_is_closed()):
         if time < 15:
             wash()
         elif time < 60:
