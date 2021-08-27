@@ -38,15 +38,18 @@ state = Constants.STOP
 # DHT Sensor Set Up
 dhtDevice = adafruit_dht.DHT11(board.D4)
 
+
 def set_state(new_state) -> None:
     global state
     state = new_state
     sio.emit(Constants.STATE, state, room=clients)
 
+
 def door_is_closed() -> bool:
     if GPIO.input(18) == GPIO.HIGH:
         return False
     return True
+
 
 def get_humidity() -> str:
     return dhtDevice.humidity
@@ -61,14 +64,13 @@ def wash() -> None:
     log("wash")
     if state != Constants.STOP:
         set_state(Constants.WASHING)
-        
+
         signal = 1
         ser.write(str(signal).encode('utf-8'))
 
         time.sleep(1)
     else:
         log("wash", "Stopping wash because of state")
-
 
 
 def dry() -> None:
@@ -96,13 +98,13 @@ def start_cleaning() -> None:
     log("start_cleaning")
     set_state(Constants.START)
 
-    time = 0
-    while (state != Constants.STOP and time < 60 and door_is_closed()):
-        if time < 15:
+    count = 0
+    while (state != Constants.STOP and count < 60 and door_is_closed()):
+        if count < 15:
             wash()
-        elif time < 60:
+        elif count < 60:
             dry()
-        time += 1
+        count += 1
     stop_cleaning()
 
 
@@ -114,7 +116,6 @@ def handle_(instructions) -> None:
         stop_cleaning()
     elif instructions == Constants.DRY:
         dry()
-
 
 
 # Start Listening
