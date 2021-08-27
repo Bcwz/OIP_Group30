@@ -1,7 +1,8 @@
-from time import time
+import time
 
-start_time = time()
+start_time = time.time()
 
 
 def log(location: str, **msg: str) -> None:
-    print(time() - start_time, location, msg)
+    print(time.time() - start_time, location, msg)
+

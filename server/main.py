@@ -18,7 +18,6 @@ import random
 
 # GPIO Set Up
 GPIO.setwarnings(False)
-GPIO.setmode(GPIO.BOARD)
 GPIO.setup(18, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
 
 # Socketio Set Up
@@ -67,7 +66,7 @@ def wash() -> None:
 
         signal = 1
         ser.write(str(signal).encode('utf-8'))
-
+	
         time.sleep(1)
     else:
         log("wash", "Stopping wash because of state")
