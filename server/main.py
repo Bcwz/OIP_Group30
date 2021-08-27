@@ -1,11 +1,10 @@
 import eventlet
 import socketio
 
+from tg import *
+
 import board
 import adafruit_dht
-
-# For limit switch
-import RPi.GPIO as GPIO
 
 # For pi to arduino imports
 import serial
@@ -14,11 +13,6 @@ import time
 import Constants
 
 from Utils import *
-import random
-
-# GPIO Set Up
-GPIO.setwarnings(False)
-GPIO.setup(24, GPIO.IN)
 
 # Socketio Set Up
 clients = "clients"
@@ -37,16 +31,14 @@ state = Constants.STOP
 # DHT Sensor Set Up
 dhtDevice = adafruit_dht.DHT11(board.D4)
 
+# Telegram set up
+tg_bot = TelegramClass()
+
 
 def set_state(new_state) -> None:
     global state
     state = new_state
     sio.emit(Constants.STATE, state, room=clients)
-
-
-def door_is_closed() -> bool:
-    return True
-    return GPIO.input(24) != GPIO.HIGH
 
 
 def get_humidity() -> str:
@@ -99,7 +91,7 @@ def start_cleaning() -> None:
     set_state(Constants.START)
 
     count = 0
-    while (state != Constants.STOP and count < 30 and door_is_closed()):
+    while (state != Constants.STOP and count < 30):
         if count == 0:
             wash()
         elif count == 20:
@@ -108,6 +100,7 @@ def start_cleaning() -> None:
             time.sleep(1)
         count += 1
     stop_cleaning()
+    tg_bot.alert_nurse()
 
 
 def handle_(instructions) -> None:
