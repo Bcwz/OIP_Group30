@@ -66,7 +66,7 @@ def wash() -> None:
 
         signal = 1
         ser.write(str(signal).encode('utf-8'))
-	
+
         time.sleep(1)
     else:
         log("wash", "Stopping wash because of state")
@@ -98,11 +98,15 @@ def start_cleaning() -> None:
     set_state(Constants.START)
 
     count = 0
+    while True:
+        print(door_is_closed())
     while (state != Constants.STOP and count < 60 and door_is_closed()):
-        if count < 15:
+        if count == 0:
             wash()
-        elif count < 60:
+        elif count == 15:
             dry()
+        else:
+            time.sleep(1)
         count += 1
     stop_cleaning()
 
