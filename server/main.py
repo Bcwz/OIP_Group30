@@ -18,7 +18,7 @@ import random
 
 # GPIO Set Up
 GPIO.setwarnings(False)
-GPIO.setup(18, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
+GPIO.setup(24, GPIO.IN)
 
 # Socketio Set Up
 clients = "clients"
@@ -45,9 +45,8 @@ def set_state(new_state) -> None:
 
 
 def door_is_closed() -> bool:
-    if GPIO.input(18) == GPIO.HIGH:
-        return False
     return True
+    return GPIO.input(24) != GPIO.HIGH
 
 
 def get_humidity() -> str:
@@ -91,6 +90,8 @@ def stop_cleaning() -> None:
     set_state(Constants.STOP)
     signal = 0
     ser.write(str(signal).encode('utf-8'))
+    signal = 3
+    ser.write(str(signal).encode('utf-8'))
 
 
 def start_cleaning() -> None:
@@ -98,12 +99,10 @@ def start_cleaning() -> None:
     set_state(Constants.START)
 
     count = 0
-    while True:
-        print(door_is_closed())
-    while (state != Constants.STOP and count < 60 and door_is_closed()):
+    while (state != Constants.STOP and count < 30 and door_is_closed()):
         if count == 0:
             wash()
-        elif count == 15:
+        elif count == 20:
             dry()
         else:
             time.sleep(1)
