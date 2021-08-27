@@ -1,0 +1,26 @@
+<annotation>
+	<folder>images</folder>
+	<filename>IMG_20210827_141645_BURST62.jpg</filename>
+	<path>C:\Users\BING\Desktop\images\IMG_20210827_141645_BURST62.jpg</path>
+	<source>
+		<database>Unknown</database>
+	</source>
+	<size>
+		<width>418</width>
+		<height>557</height>
+		<depth>3</depth>
+	</size>
+	<segmented>0</segmented>
+	<object>
+		<name>unknownObject</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>182</xmin>
+			<ymin>333</ymin>
+			<xmax>253</xmax>
+			<ymax>399</ymax>
+		</bndbox>
+	</object>
+</annotation>
