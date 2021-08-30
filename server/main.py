@@ -34,7 +34,7 @@ state = Constants.STOP
 dhtDevice = adafruit_dht.DHT11(board.D4)
 
 # Telegram set up
-# tg_bot = TelegramClass()
+tg_bot = TelegramClass()
 
 
 def set_state(new_state) -> None:
@@ -85,6 +85,7 @@ def complete_cleaning() -> None:
     log("complete_cleaning")
     if state != Constants.STOP:
         set_state(Constants.COMPLETE)
+        tg_bot.alert_nurse()
 
 
 def stop_cleaning() -> None:
@@ -106,7 +107,6 @@ def start_cleaning() -> None:
 
     d.start()
     c.start()
-  #  tg_bot.alert_nurse()
 
 
 def handle_(instructions) -> None:
