@@ -1,0 +1,8 @@
+APIs (Stateless)
+
+Server == Cleaning Machine (Stateful)
+
+Information flow 
+Server - (API) -> Client
+
+Sockets (Bidirectional)

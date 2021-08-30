@@ -1,6 +1,8 @@
 import eventlet
 import socketio
 
+from threading import Timer
+
 from tg import *
 
 import board
@@ -79,6 +81,12 @@ def dry() -> None:
         log("dry", "Stopping dry because of state")
 
 
+def complete_cleaning() -> None:
+    log("complete_cleaning")
+    if state != Constants.STOP:
+        set_state(Constants.COMPLETE)
+
+
 def stop_cleaning() -> None:
     log("stop_cleaning")
     set_state(Constants.STOP)
@@ -92,16 +100,12 @@ def start_cleaning() -> None:
     log("start_cleaning")
     set_state(Constants.START)
 
-    count = 0
-    while (state != Constants.STOP and count < 30):
-        if count == 0:
-            wash()
-        elif count == 20:
-            dry()
-        else:
-            time.sleep(1)
-        count += 1
-    stop_cleaning()
+    wash()
+    d = Timer(20, dry)
+    c = Timer(30, complete_cleaning)
+
+    d.start()
+    c.start()
   #  tg_bot.alert_nurse()
 
 

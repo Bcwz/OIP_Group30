@@ -4,7 +4,6 @@ export const constants = Object.freeze({
   STOP: "stop",
   DRY: "dry",
 
-  SCANNING: "scanning",
   WASHING: "washing",
   DRYING: "drying",
   COMPLETE: "complete",

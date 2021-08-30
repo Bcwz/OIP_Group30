@@ -5,6 +5,7 @@
 </template>
 
 <script>
+import { constants } from "../assets/constants";
 export default {
   name: "State",
   props: {
@@ -12,7 +13,11 @@ export default {
   },
   computed: {
     upper_case_state() {
-      return this.state ? this.state.toUpperCase() : "";
+      if (this.state) {
+        if (this.state == constants.STOP) return "";
+        return this.state.toUpperCase();
+      }
+      return "";
     },
   },
 };
