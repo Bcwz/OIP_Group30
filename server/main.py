@@ -32,13 +32,15 @@ state = Constants.STOP
 dhtDevice = adafruit_dht.DHT11(board.D4)
 
 # Telegram set up
-tg_bot = TelegramClass()
+# tg_bot = TelegramClass()
 
 
 def set_state(new_state) -> None:
     global state
     state = new_state
+    print("sent state")
     sio.emit(Constants.STATE, state, room=clients)
+    sio.sleep(0.5)
 
 
 def get_humidity() -> str:
@@ -100,7 +102,7 @@ def start_cleaning() -> None:
             time.sleep(1)
         count += 1
     stop_cleaning()
-    tg_bot.alert_nurse()
+  #  tg_bot.alert_nurse()
 
 
 def handle_(instructions) -> None:
