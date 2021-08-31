@@ -1,15 +1,15 @@
 <template>
   <div>
     <div>
-      <div>
-        <p class="subtitle" v-if="running">Press button to stop</p>
-        <p class="subtitle" v-else>Press button to start</p>
-      </div>
+      <div></div>
       <button
-        class="button is-primary is-fullwidth"
+        class="button is-primary is-large is-fullwidth"
         :class="{ 'is-primary': !running, 'is-danger': running }"
         @click="send_signal()"
-      ></button>
+      >
+        <p class="title has-text-white" v-if="running">Stop cleaning</p>
+        <p class="title has-text-white" v-else>Start cleaning</p>
+      </button>
     </div>
     <p>
       <span v-if="error">{{ error }}</span>

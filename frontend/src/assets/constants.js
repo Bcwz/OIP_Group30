@@ -6,6 +6,7 @@ export const constants = Object.freeze({
 
   WASHING: "washing",
   DRYING: "drying",
+  STERILIZING: "sterilizing",
   COMPLETE: "complete",
 
   STATE: "state",

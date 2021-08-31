@@ -1,5 +1,5 @@
 <template>
-  <div class="holder">
+  <div class="holder has-background-warning-light">
     <State :state="state" />
     <Controls :state="state" />
   </div>
@@ -15,6 +15,18 @@ export default {
   data() {
     return {
       state: null,
+      count: 0,
+
+      states: [
+        constants.START,
+        constants.WASHING,
+        constants.DRYING,
+        constants.STERILIZING,
+        constants.COMPLETE,
+        constants.STOP,
+      ],
+
+      interval: null,
     };
   },
   components: {
@@ -22,10 +34,15 @@ export default {
     Controls,
   },
   mounted() {
-    this.$socket.on(constants.STATE, (state) => {
-      console.log(state);
-      this.state = state;
-    });
+    this.interval = setInterval(() => {
+      this.state = this.states[this.count];
+      this.count = (this.count + 1) % this.states.length;
+    }, 1000);
+
+    // this.$socket.on(constants.STATE, (state) => {
+    //   console.log(state);
+    //   this.state = state;
+    // });
   },
 };
 </script>

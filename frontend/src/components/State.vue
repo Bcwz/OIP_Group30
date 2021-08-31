@@ -1,5 +1,5 @@
 <template>
-  <div class="title">
+  <div class="title is-size-1">
     {{ upper_case_state }}
   </div>
 </template>
